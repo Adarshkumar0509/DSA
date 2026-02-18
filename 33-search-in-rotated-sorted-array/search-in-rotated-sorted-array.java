@@ -21,13 +21,13 @@ class Solution {
             } else if (target > arr[mid]) {
                 start = mid + 1;
             } else {
-                return mid; // ✅ Fixed: was returning -1 (should return the found index)
+                return mid; 
             }
         }
         return -1;
     }
 
-    int findPivot(int[] arr) { // ✅ Fixed: moved outside binarySearch, removed invalid 'static'
+    int findPivot(int[] arr) { 
         int start = 0;
         int end = arr.length - 1;
         while (start <= end) {
@@ -35,7 +35,7 @@ class Solution {
             if (mid < end && arr[mid] > arr[mid + 1]) {
                 return mid;
             }
-            if (mid > start && arr[mid] < arr[mid - 1]) { // ✅ Fixed: wrong comparison operator
+            if (mid > start && arr[mid] < arr[mid - 1]) { 
                 return mid - 1;
             }
             if (arr[mid] <= arr[start]) {
