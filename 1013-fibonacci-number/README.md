@@ -3,7 +3,7 @@
 <pre>
 F(0) = 0, F(1) = 1
 F(n) = F(n - 1) + F(n - 2), for n &gt; 1.
-</pre>
+</pre> 
 
 <p>Given <code>n</code>, calculate <code>F(n)</code>.</p>
 
