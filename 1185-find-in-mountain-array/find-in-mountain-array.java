@@ -1,50 +1,47 @@
 class Solution {
-    public int findInMountainArray(int target, MountainArray mountainArr) {
-        int n = mountainArr.length();
+    public int findInMountainArray(int target, MountainArray arr) {
         
-        // Step 1: Find peak index
-        int peak = findPeak(mountainArr, n);
+        int peak = peakIndex(arr);
         
-        // Step 2: Search in left (ascending)
-        int left = binarySearch(mountainArr, 0, peak, target, true);
-        if (left != -1) return left;
+        int firstTry = orderAgnosticBS(arr, target, 0, peak);
+        if (firstTry != -1) return firstTry;
         
-        // Step 3: Search in right (descending)
-        return binarySearch(mountainArr, peak + 1, n - 1, target, false);
+        return orderAgnosticBS(arr, target, peak + 1, arr.length() - 1);
     }
-    
-    private int findPeak(MountainArray arr, int n) {
-        int low = 0, high = n - 1;
-        
-        while (low < high) {
-            int mid = low + (high - low) / 2;
-            
-            if (arr.get(mid) < arr.get(mid + 1)) {
-                low = mid + 1;
+
+    int peakIndex(MountainArray arr) {
+        int start = 0;
+        int end = arr.length() - 1;
+
+        while (start < end) {
+            int mid = start + (end - start) / 2;
+
+            if (arr.get(mid) > arr.get(mid + 1)) {
+                end = mid; // you are in decreasing part
             } else {
-                high = mid;
+                start = mid + 1; // increasing part
             }
         }
-        
-        return low;
+        return start;
     }
-    
-    private int binarySearch(MountainArray arr, int low, int high, int target, boolean asc) {
-        while (low <= high) {
-            int mid = low + (high - low) / 2;
+
+    int orderAgnosticBS(MountainArray arr, int target, int start, int end) {
+        boolean isAsc = arr.get(start) < arr.get(end);
+
+        while (start <= end) {
+            int mid = start + (end - start) / 2;
             int val = arr.get(mid);
-            
+
             if (val == target) return mid;
-            
-            if (asc) {
-                if (val < target) low = mid + 1;
-                else high = mid - 1;
+
+            if (isAsc) {
+                if (target > val) start = mid + 1;
+                else end = mid - 1;
             } else {
-                if (val < target) high = mid - 1;
-                else low = mid + 1;
+                if (target < val) start = mid + 1;
+                else end = mid - 1;
             }
         }
-        
         return -1;
     }
 }
