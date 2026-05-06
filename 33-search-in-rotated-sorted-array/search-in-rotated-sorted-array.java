@@ -35,13 +35,13 @@ class Solution {
             if (mid < end && arr[mid] > arr[mid + 1]) {
                 return mid;
             }
-            if (mid > start && arr[mid] < arr[mid - 1]) { 
+            if (mid > start && arr[mid] < arr[mid - 1]) {
                 return mid - 1;
             }
             if (arr[mid] <= arr[start]) {
                 end = mid - 1;
             } else {
-                start = mid + 1; // ✅ Fixed: was mid-1 (infinite loop risk)
+                start = mid + 1; 
             }
         }
         return -1;
