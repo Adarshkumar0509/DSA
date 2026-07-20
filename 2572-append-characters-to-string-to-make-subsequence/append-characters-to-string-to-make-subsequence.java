@@ -14,3 +14,4 @@ class Solution {
       return t.length()-j;
     }
 }
+// practice done
