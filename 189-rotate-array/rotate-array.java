@@ -14,5 +14,4 @@ class Solution {
             end--;
         }
     }
-
 }
