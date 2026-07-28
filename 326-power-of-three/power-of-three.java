@@ -19,3 +19,4 @@ class Solution {
         }
     }
 }
+// same way for power of 2
