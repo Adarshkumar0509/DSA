@@ -17,4 +17,4 @@ class Solution {
         return firstTerm;
     }
 }
-// tcs revesion done 
+// tcs revesion done almost ask this question to many candidate
